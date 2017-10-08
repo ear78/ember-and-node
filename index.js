@@ -14,26 +14,31 @@ var db = mysql.createConnection({
 db.connect(function(err){
     if(err) throw err.stack;
     console.log('mysql connected...');
-})
+});
 
-
+// EXPRESS VARIABLE AS APP
 var app = express();
 
-app.get('/posts', function(req,res){
-    var sql = "INSERT INTO posts (id, title, body, author) VALUES (id, 'Post 1', 'This is the body of post 1', 'Elliot R')";
-    db.query(sql, function(err, result){
-        if(err) throw err;
-        console.log(result);
-        res.send('Post was created...');
-    })
-})
+// STATIC FILES LOCATION FOR SERVING
+app.use(express.static(__dirname + '/public'));
 
-app.get('/about', function(req,res){
-    res.send('This is the about route!');
-})
-app.get('/', function(req,res){
-    res.send('hello from the index!!!');
-})
+
+
+// app.get('/posts', function(req,res){
+//     var sql = "INSERT INTO posts (id, title, body, author) VALUES (id, 'Post 1', 'This is the body of post 1', 'Elliot R')";
+//     db.query(sql, function(err, result){
+//         if(err) throw err;
+//         console.log(result);
+//         res.send('Post was created...');
+//     })
+// })
+
+// app.get('/about', function(req,res){
+//     res.send('This is the about route!');
+// })
+// app.get('/', function(req,res){
+//     res.send('hello from the index!!!');
+// })
 
 
 
